@@ -1,7 +1,7 @@
 import { Editor, Monaco } from "@monaco-editor/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { VscCode } from "react-icons/vsc";
+import { VscCode, VscCodeOss } from "react-icons/vsc";
 import { type editor } from "monaco-editor";
 import { I18nKey } from "#/i18n/declaration";
 import { useFiles } from "#/context/files";
@@ -33,6 +33,10 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
       });
 
       monaco.editor.setTheme("my-theme");
+
+      //获取光标位置
+
+
     },
     [],
   );
