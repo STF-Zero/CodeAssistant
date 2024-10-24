@@ -623,32 +623,50 @@ crt = ["awscrt (==0.22.0)"]
 
 [[package]]
 name = "browsergym"
-version = "0.8.1"
+version = "0.10.1"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym-0.8.1-py3-none-any.whl", hash = "sha256:b194cb4f52f439fff571351b045330171908a3d291e2a5527097461f694074d1"},
-    {file = "browsergym-0.8.1.tar.gz", hash = "sha256:1fa9bb47b236cb2e36ef4d931b7aa6fa30bb73fc0f87ad7ba9da86abfdf73bbb"},
+    {file = "browsergym-0.10.1-py3-none-any.whl", hash = "sha256:fadf4df8df35ab7c888304622a5f201786a7141a6b181908862a45046224ac77"},
+    {file = "browsergym-0.10.1.tar.gz", hash = "sha256:3924c998319a270fc801032bb7a803024522a86c4d05997100ce23d05d4f26f0"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
-browsergym-experiments = "0.8.1"
-browsergym-miniwob = "0.8.1"
-browsergym-visualwebarena = "0.8.1"
-browsergym-webarena = "0.8.1"
-browsergym-workarena = "*"
+browsergym-assistantbench = "0.10.1"
+browsergym-core = "0.10.1"
+browsergym-experiments = "0.10.1"
+browsergym-miniwob = "0.10.1"
+browsergym-visualwebarena = "0.10.1"
+browsergym-webarena = "0.10.1"
+browsergym-workarena = ">=0.4.1"
+
+[[package]]
+name = "browsergym-assistantbench"
+version = "0.10.1"
+description = "AssistantBench benchmark for BrowserGym"
+optional = false
+python-versions = ">3.7"
+files = [
+    {file = "browsergym_assistantbench-0.10.1-py3-none-any.whl", hash = "sha256:9029afe1a716720b1e509f0328cec014d03edefb8867b68389d065a82e9f87f2"},
+    {file = "browsergym_assistantbench-0.10.1.tar.gz", hash = "sha256:c2cacd70566dbecaa7da968b974a7afd637d6082a660f2a625ab6396c4d6bc6e"},
+]
+
+[package.dependencies]
+browsergym-core = "0.10.1"
+datasets = "*"
+numpy = "*"
+scipy = "*"
 
 [[package]]
 name = "browsergym-core"
-version = "0.8.1"
+version = "0.10.1"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.9"
 files = [
-    {file = "browsergym_core-0.8.1-py3-none-any.whl", hash = "sha256:80f085d330f3f6a31f38233aa4b1030a0fb9fc87493f628f16cb1b0276ceb8fc"},
-    {file = "browsergym_core-0.8.1.tar.gz", hash = "sha256:802df5d75e56c362fd32f48fc9819374729195a9452d956809fa8864930a2381"},
+    {file = "browsergym_core-0.10.1-py3-none-any.whl", hash = "sha256:780ec543379786bb80c0eb9ade65cbe8c8920a489d2b7a776777c1e452b4c51e"},
+    {file = "browsergym_core-0.10.1.tar.gz", hash = "sha256:14cabcc6ef8ad5283733cb52a4a2d8f301750e1370d2e98a2ee3fe2782c1bcc7"},
 ]
 
 [package.dependencies]
@@ -662,62 +680,63 @@ pyparsing = ">=3"
 
 [[package]]
 name = "browsergym-experiments"
-version = "0.8.1"
+version = "0.10.1"
 description = "Experimentation tools for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_experiments-0.8.1-py3-none-any.whl", hash = "sha256:49f51f93dfb246fe34ba2c7c7b9b7207c4c47b3c13f27d2200a954834a841bb4"},
-    {file = "browsergym_experiments-0.8.1.tar.gz", hash = "sha256:32c5fd96dab3dd6271128699058e003ea39a39f27a0e57ae3c593b0b2de5f3d1"},
+    {file = "browsergym_experiments-0.10.1-py3-none-any.whl", hash = "sha256:c84d8c54659df6d0a41df68e0c221937d64801ded9ffcef46bc8979081afc238"},
+    {file = "browsergym_experiments-0.10.1.tar.gz", hash = "sha256:6b1c77d4e538aa649e33321606daace5ec939ff5e3703950c21b7badafbccb74"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.10.1"
+dataclasses-json = "*"
 tiktoken = ">=0.4"
 
 [[package]]
 name = "browsergym-miniwob"
-version = "0.8.1"
+version = "0.10.1"
 description = "MiniWoB++ benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_miniwob-0.8.1-py3-none-any.whl", hash = "sha256:089b920808f8189e82398c0ccafcb9860bcad434385eb8fe1166f60f8b13df86"},
-    {file = "browsergym_miniwob-0.8.1.tar.gz", hash = "sha256:ec5d14f9a3b8f5fbf7843a145268d6071085b232ebe5207f4693cb0d8e2c142b"},
+    {file = "browsergym_miniwob-0.10.1-py3-none-any.whl", hash = "sha256:bd2da43b4b8005a414ed04485e89d0d0e4e373f6decaaf816e3264f7b69e50b3"},
+    {file = "browsergym_miniwob-0.10.1.tar.gz", hash = "sha256:dbaabbe0cbd10cd008ab57b433e1f05126952ddc5b48628a034bc675e49a482d"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.10.1"
 
 [[package]]
 name = "browsergym-visualwebarena"
-version = "0.8.1"
+version = "0.10.1"
 description = "VisualWebArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_visualwebarena-0.8.1-py3-none-any.whl", hash = "sha256:1119943e35b067759b4f8c154e9225d3a243d833771d399f60ecd46be2d32440"},
-    {file = "browsergym_visualwebarena-0.8.1.tar.gz", hash = "sha256:799b36cf33e0fb706c04c7bfad972c91d6827733b211cb3ad31a5734906e778a"},
+    {file = "browsergym_visualwebarena-0.10.1-py3-none-any.whl", hash = "sha256:9e5aa417cf1c961bee14b752f482fec58609775ab05c4f5599fd9f8a8b2ab7ed"},
+    {file = "browsergym_visualwebarena-0.10.1.tar.gz", hash = "sha256:a2a402e0abce97c944373db1db14acdbfbc48b2c0ec075a2370e52565af31743"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.10.1"
 libvisualwebarena = "0.0.14"
 requests = "*"
 
 [[package]]
 name = "browsergym-webarena"
-version = "0.8.1"
+version = "0.10.1"
 description = "WebArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_webarena-0.8.1-py3-none-any.whl", hash = "sha256:73cfe0968c4fc26d0ce4f2630bb966c721c68352e50506c196a60c84f405e2f8"},
-    {file = "browsergym_webarena-0.8.1.tar.gz", hash = "sha256:f542155a9f7c5973406e8933f17d5a495693b438c8d3b379995751f9b47cf013"},
+    {file = "browsergym_webarena-0.10.1-py3-none-any.whl", hash = "sha256:c9d844c522039ac3996f00cf0258fe474fbee19f2c3f4fcc57b2b040064ee3ba"},
+    {file = "browsergym_webarena-0.10.1.tar.gz", hash = "sha256:f663e7e2af9aa223fe606b3a33df4373762e12a293ea821c75e8cadd41023862"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.10.1"
 libwebarena = "0.0.3"
 
 [[package]]
@@ -10031,4 +10050,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7fc51225767e3a98147f7b0dacdce4486a1afd83dc3273f06fd9f6cdc35d1860"
+content-hash = "ff8ec906e8d7f41f1f53148aecc5ea95ea3613a47a0481f8d717c7099c69580c"
