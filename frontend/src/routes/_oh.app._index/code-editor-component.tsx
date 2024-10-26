@@ -1,7 +1,7 @@
 import { Editor, Monaco } from "@monaco-editor/react";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { VscCode, VscCodeOss } from "react-icons/vsc";
+import { VscCode } from "react-icons/vsc";
 import { type editor } from "monaco-editor";
 import { I18nKey } from "#/i18n/declaration";
 import { useFiles } from "#/context/files";
@@ -21,6 +21,8 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
     saveFileContent: saveNewFileContent,
   } = useFiles();
 
+  const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 });
+
   const handleEditorDidMount = React.useCallback(
     (editor: editor.IStandaloneCodeEditor, monaco: Monaco): void => {
       monaco.editor.defineTheme("my-theme", {
@@ -34,9 +36,9 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
 
       monaco.editor.setTheme("my-theme");
 
-      //获取光标位置
-
-
+      editor.onDidChangeCursorPosition((e) => {
+        setCursorPosition({ line: e.position.lineNumber, column: e.position.column });
+      });
     },
     [],
   );
@@ -65,7 +67,7 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
     return () => {
       document.removeEventListener("keydown", handleSave);
     };
-  }, [saveNewFileContent]);
+  }, [saveNewFileContent, selectedPath]);
 
   if (!selectedPath) {
     return (
@@ -80,20 +82,29 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
   }
 
   return (
-    <Editor
-      data-testid="code-editor"
-      height="100%"
-      path={selectedPath ?? undefined}
-      defaultValue=""
-      value={
-        selectedPath
-          ? modifiedFiles[selectedPath] || files[selectedPath]
-          : undefined
-      }
-      onMount={handleEditorDidMount}
-      onChange={handleEditorChange}
-      options={{ readOnly: isReadOnly }}
-    />
+    <div className="flex grow flex-col h-full w-full">
+      {/* 确保编辑器能够占据父容器的最大空间 */}
+      <div className="flex-grow min-h-0">
+        <Editor
+          data-testid="code-editor"
+          height="100%"
+          path={selectedPath ?? undefined}
+          defaultValue=""
+          value={
+            selectedPath
+              ? modifiedFiles[selectedPath] || files[selectedPath]
+              : undefined
+          }
+          onMount={handleEditorDidMount}
+          onChange={handleEditorChange}
+          options={{ readOnly: isReadOnly }}
+        />
+      </div>
+      {/* 光标位置信息 */}
+      <div className="p-2 text-neutral-500 flex-shrink-0">
+        Row: {cursorPosition.line}, Column: {cursorPosition.column}
+      </div>
+    </div>
   );
 }
 

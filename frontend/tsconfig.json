@@ -6,7 +6,7 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx"
-  ],
+, "src/routes/_oh.app._index/open-vscode.js"  ],
   "compilerOptions": {
     "lib": [
       "dom",

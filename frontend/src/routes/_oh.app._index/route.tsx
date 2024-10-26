@@ -93,6 +93,25 @@ function CodeEditor() {
     if (selectedPath) discardChanges(selectedPath);
   };
 
+  const handleOpenVSCode = async () => {
+    try {
+      const token = localStorage.getItem("token"); // 获取存储的令牌
+      const response = await fetch("http://localhost:3005/api/open-vscode", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`, // 添加Authorization头
+        },
+      });
+      if (response.ok) {
+        console.log("VSCode opened successfully");
+      } else {
+        console.error("Failed to open VSCode");
+      }
+    } catch (error) {
+      console.error("Error opening VSCode:", error);
+    }
+  };
+
   return (
     <div className="flex h-full w-full bg-neutral-900 relative">
       <FileExplorer />
@@ -103,6 +122,7 @@ function CodeEditor() {
             <EditorActions
               onSave={handleSave}
               onDiscard={handleDiscard}
+              onOpenVSCode={handleOpenVSCode}
               isDisabled={!isEditingAllowed || !modifiedFiles[selectedPath]}
             />
           </div>

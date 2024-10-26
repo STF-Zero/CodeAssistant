@@ -32,12 +32,14 @@ function EditorActionButton({
 interface EditorActionsProps {
   onSave: () => void;
   onDiscard: () => void;
+  onOpenVSCode: () => void;
   isDisabled: boolean;
 }
 
 export function EditorActions({
   onSave,
   onDiscard,
+  onOpenVSCode,
   isDisabled,
 }: EditorActionsProps) {
   return (
@@ -57,6 +59,15 @@ export function EditorActions({
       >
         Discard
       </EditorActionButton>
+
+      <EditorActionButton
+        onClick={onOpenVSCode}
+        disabled={false} // 打开VSCode的按钮通常不禁用
+        className="bg-blue-600 hover:bg-blue-700"
+      >
+        Open in VSCode
+      </EditorActionButton>
+
     </div>
   );
 }
