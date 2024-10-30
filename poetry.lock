@@ -4799,12 +4799,12 @@ type = ["mypy (==1.11.2)"]
 
 [[package]]
 name = "modal"
-version = "0.64.192"
+version = "0.65.1"
 description = "Python client library for Modal"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "modal-0.64.192-py3-none-any.whl", hash = "sha256:4d20e201e4040b13841c0e34ea4ad0e58719568adc084eee6b1da71b7c618273"},
+    {file = "modal-0.65.1-py3-none-any.whl", hash = "sha256:66f581c473363aa6e26a3eba42c2fe46061fdd3d90b2f0094a035d5add9fee95"},
 ]
 
 [package.dependencies]
@@ -10031,4 +10031,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7fc51225767e3a98147f7b0dacdce4486a1afd83dc3273f06fd9f6cdc35d1860"
+content-hash = "5464486d8befb935a88b872e6f91d1d8e322bff36d62fb012169a335ad1c39b3"
