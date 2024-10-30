@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   ClientActionFunctionArgs,
@@ -61,6 +61,8 @@ function CodeEditor() {
     (state: RootState) => state.agent.curAgentState,
   );
 
+  const [selectedText, setSelectedText] = useState<string | null>(null);
+
   React.useEffect(() => {
     // only retrieve files if connected to WS to prevent requesting before runtime is ready
     if (runtimeActive && token) OpenHands.getFiles(token).then(setPaths);
@@ -112,6 +114,26 @@ function CodeEditor() {
     }
   };
 
+  const [showComboBox, setShowComboBox] = useState(false);
+
+  const handleSelectText = () => {
+    if (selectedText) {
+      setShowComboBox(true);
+    }
+  };
+
+  const handleOptionClick = (option: string) => {
+    console.log(`Selected option: ${option}`);
+    setShowComboBox(false);
+  };
+
+  // 监测 selectedText 的变化，自动关闭 ComboBox
+  useEffect(() => {
+    if (!selectedText) {
+      setShowComboBox(false);
+    }
+  }, [selectedText]);
+
   return (
     <div className="flex h-full w-full bg-neutral-900 relative">
       <FileExplorer />
@@ -123,14 +145,32 @@ function CodeEditor() {
               onSave={handleSave}
               onDiscard={handleDiscard}
               onOpenVSCode={handleOpenVSCode}
+              onSelectText={handleSelectText}
               isDisabled={!isEditingAllowed || !modifiedFiles[selectedPath]}
+              selectedText={selectedText}
             />
           </div>
         )}
         <div className="flex grow items-center justify-center">
-          <CodeEditorCompoonent isReadOnly={!isEditingAllowed} />
+          <CodeEditorCompoonent isReadOnly={!isEditingAllowed} setSelectedText={setSelectedText} />
         </div>
       </div>
+
+      {/* ComboBox 位置移到这里 */}
+      {showComboBox && (
+              <div className="absolute bottom-4 right-4 z-10 bg-gray border rounded shadow-lg mt-1">
+                {["Python", "C++", "Java"].map((option) => (
+                  <div
+                    key={option}
+                    className="p-2 hover:bg-gray-300 hover:text-black cursor-pointer"
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+
     </div>
   );
 }

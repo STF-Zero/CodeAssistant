@@ -1,5 +1,5 @@
 import { cn } from "@nextui-org/react";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 
 interface EditorActionButtonProps {
   onClick: () => void;
@@ -33,15 +33,22 @@ interface EditorActionsProps {
   onSave: () => void;
   onDiscard: () => void;
   onOpenVSCode: () => void;
+  onSelectText: () => void;
   isDisabled: boolean;
+  selectedText: string | null;
 }
 
 export function EditorActions({
   onSave,
   onDiscard,
   onOpenVSCode,
+  onSelectText,
   isDisabled,
+  selectedText,
 }: EditorActionsProps) {
+
+
+
   return (
     <div className="flex gap-2">
       <EditorActionButton
@@ -67,6 +74,28 @@ export function EditorActions({
       >
         Open in VSCode
       </EditorActionButton>
+
+      <EditorActionButton
+        onClick={onSelectText}
+        disabled={!selectedText} // 根据选中的文本来启用按钮
+        className="bg-green-600 hover:bg-green-700"
+      >
+        Language Transform
+      </EditorActionButton>
+
+      {/* {showComboBox && (
+        <div className="absolute z-10 bg-white border rounded shadow-lg mt-1">
+          {["Python", "C++", "Java"].map((option) => (
+            <div
+              key={option}
+              className="p-2 hover:bg-green-200 cursor-pointer"
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )} */}
 
     </div>
   );

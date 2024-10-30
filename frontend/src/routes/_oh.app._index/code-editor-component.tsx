@@ -9,9 +9,10 @@ import OpenHands from "#/api/open-hands";
 
 interface CodeEditorCompoonentProps {
   isReadOnly: boolean;
+  setSelectedText: (text: string | null) => void; // 接收设置选中文本的函数
 }
 
-function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
+function CodeEditorCompoonent({ isReadOnly, setSelectedText }: CodeEditorCompoonentProps) {
   const { t } = useTranslation();
   const {
     files,
@@ -38,9 +39,16 @@ function CodeEditorCompoonent({ isReadOnly }: CodeEditorCompoonentProps) {
 
       editor.onDidChangeCursorPosition((e) => {
         setCursorPosition({ line: e.position.lineNumber, column: e.position.column });
+        const selection = editor.getSelection();
+        if (selection) {
+          const text = editor.getModel()?.getValueInRange(selection);
+          setSelectedText(text || null); // 更新选中的文本
+        } else {
+          setSelectedText(null); // 如果没有选中任何文本，则设为 null
+        }
       });
     },
-    [],
+    [setSelectedText],
   );
 
   const handleEditorChange = (value: string | undefined) => {
