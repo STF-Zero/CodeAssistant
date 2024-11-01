@@ -15,8 +15,10 @@ import { convertImageToBase64 } from "#/utils/convert-image-to-base-64";
 interface ChatInputProps {
   disabled?: boolean;
   onSendMessage: (message: string, image_urls: string[]) => void;
+  // messages: string;
 }
 
+// function ChatInput({ disabled = false, onSendMessage, messages }: ChatInputProps) {
 function ChatInput({ disabled = false, onSendMessage }: ChatInputProps) {
   const { send } = useSocket();
   const { t } = useTranslation();
@@ -34,6 +36,9 @@ function ChatInput({ disabled = false, onSendMessage }: ChatInputProps) {
     }
 
     if (message.trim()) {
+      // if(messages){
+      //   setMessage(messages)
+      // }
       let base64images: string[] = [];
       if (files.length > 0) {
         base64images = await Promise.all(

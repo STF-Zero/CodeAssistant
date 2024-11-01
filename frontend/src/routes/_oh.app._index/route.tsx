@@ -14,6 +14,7 @@ import { useSocket } from "#/context/socket";
 import CodeEditorCompoonent from "./code-editor-component";
 import { useFiles } from "#/context/files";
 import { EditorActions } from "#/components/editor-actions";
+// import ChatInput from "#/components/chat/ChatInput";
 
 export const clientLoader = async () => {
   const token = localStorage.getItem("token");
@@ -62,6 +63,8 @@ function CodeEditor() {
   );
 
   const [selectedText, setSelectedText] = useState<string | null>(null);
+
+  // const [message, setMessage] = useState(""); // 用于保存传递给ChatInput的消息
 
   React.useEffect(() => {
     // only retrieve files if connected to WS to prevent requesting before runtime is ready
@@ -122,8 +125,19 @@ function CodeEditor() {
     }
   };
 
+  // 发送消息的回调
+  const handleSendMessage = (message: string) => {
+    // 处理发送后的逻辑
+    console.log(`Transform request already sent`)
+  };
+
   const handleOptionClick = (option: string) => {
     console.log(`Selected option: ${option}`);
+    console.log(`selectedText is: ${selectedText}`);
+    // if(selectedText){
+    //   const message = `${selectedText}\n请将此代码转换为 ${option}代码`;
+    //   setMessage(message);
+    // }
     setShowComboBox(false);
   };
 
@@ -159,7 +173,7 @@ function CodeEditor() {
       {/* ComboBox 位置移到这里 */}
       {showComboBox && (
               <div className="absolute bottom-4 right-4 z-10 bg-gray border rounded shadow-lg mt-1">
-                {["Python", "C++", "Java"].map((option) => (
+                {["Python", "C++", "Java", "C"].map((option) => (
                   <div
                     key={option}
                     className="p-2 hover:bg-gray-300 hover:text-black cursor-pointer"
@@ -170,7 +184,6 @@ function CodeEditor() {
                 ))}
               </div>
             )}
-
     </div>
   );
 }

@@ -232,6 +232,7 @@ function App() {
           <ChatInterface />
         </Container>
 
+        {/* 页面右半部分--开始 */}
         <div className="flex flex-col w-3/4 gap-3">
           <Container
             className="h-2/3"
@@ -249,7 +250,9 @@ function App() {
             <FilesProvider>
               <Outlet />
             </FilesProvider>
+
           </Container>
+
           {/* Terminal uses some API that is not compatible in a server-environment. For this reason, we lazy load it to ensure
            * that it loads only in the client-side. */}
           <Container className="h-1/3 overflow-scroll" label="Terminal">
@@ -258,6 +261,8 @@ function App() {
             </React.Suspense>
           </Container>
         </div>
+        {/* 页面右半部分--结束 */}
+
       </div>
 
       <div className="h-[60px]">

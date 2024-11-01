@@ -83,20 +83,6 @@ export function EditorActions({
         Language Transform
       </EditorActionButton>
 
-      {/* {showComboBox && (
-        <div className="absolute z-10 bg-white border rounded shadow-lg mt-1">
-          {["Python", "C++", "Java"].map((option) => (
-            <div
-              key={option}
-              className="p-2 hover:bg-green-200 cursor-pointer"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </div>
-          ))}
-        </div>
-      )} */}
-
     </div>
   );
 }
