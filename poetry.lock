@@ -623,32 +623,50 @@ crt = ["awscrt (==0.22.0)"]
 
 [[package]]
 name = "browsergym"
-version = "0.8.1"
+version = "0.13.0"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym-0.8.1-py3-none-any.whl", hash = "sha256:b194cb4f52f439fff571351b045330171908a3d291e2a5527097461f694074d1"},
-    {file = "browsergym-0.8.1.tar.gz", hash = "sha256:1fa9bb47b236cb2e36ef4d931b7aa6fa30bb73fc0f87ad7ba9da86abfdf73bbb"},
+    {file = "browsergym-0.13.0-py3-none-any.whl", hash = "sha256:faf087daa2e8f77e68d9be5f06465751be66fded7eff9ad9559e90e579782b5f"},
+    {file = "browsergym-0.13.0.tar.gz", hash = "sha256:ddf47fb01cf07e7ac3b88f1b1f7bc12633c99ab0b138d45bc5ad16afdfb06a69"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
-browsergym-experiments = "0.8.1"
-browsergym-miniwob = "0.8.1"
-browsergym-visualwebarena = "0.8.1"
-browsergym-webarena = "0.8.1"
-browsergym-workarena = "*"
+browsergym-assistantbench = "0.13.0"
+browsergym-core = "0.13.0"
+browsergym-experiments = "0.13.0"
+browsergym-miniwob = "0.13.0"
+browsergym-visualwebarena = "0.13.0"
+browsergym-webarena = "0.13.0"
+browsergym-workarena = ">=0.4.1"
+
+[[package]]
+name = "browsergym-assistantbench"
+version = "0.13.0"
+description = "AssistantBench benchmark for BrowserGym"
+optional = false
+python-versions = ">3.7"
+files = [
+    {file = "browsergym_assistantbench-0.13.0-py3-none-any.whl", hash = "sha256:35d78f7e9d3bb03f5447f5e31b51b64455a172289e605da1d6eba9242bfae3e2"},
+    {file = "browsergym_assistantbench-0.13.0.tar.gz", hash = "sha256:28081b58ee9d3a38c1d05317a11c60d981a7c163943dbe2a8e356cb889a48522"},
+]
+
+[package.dependencies]
+browsergym-core = "0.13.0"
+datasets = "*"
+numpy = "*"
+scipy = "*"
 
 [[package]]
 name = "browsergym-core"
-version = "0.8.1"
+version = "0.13.0"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.9"
 files = [
-    {file = "browsergym_core-0.8.1-py3-none-any.whl", hash = "sha256:80f085d330f3f6a31f38233aa4b1030a0fb9fc87493f628f16cb1b0276ceb8fc"},
-    {file = "browsergym_core-0.8.1.tar.gz", hash = "sha256:802df5d75e56c362fd32f48fc9819374729195a9452d956809fa8864930a2381"},
+    {file = "browsergym_core-0.13.0-py3-none-any.whl", hash = "sha256:df85824cfdd6b912ad1d5f2abd533f7d4bdd8deec17b47026c6d0e663350585f"},
+    {file = "browsergym_core-0.13.0.tar.gz", hash = "sha256:cd9caaaaf5738e84134b4c562a2118cb26cd9caf38a8cba50b9226db0f839d8f"},
 ]
 
 [package.dependencies]
@@ -662,62 +680,74 @@ pyparsing = ">=3"
 
 [[package]]
 name = "browsergym-experiments"
-version = "0.8.1"
+version = "0.13.0"
 description = "Experimentation tools for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_experiments-0.8.1-py3-none-any.whl", hash = "sha256:49f51f93dfb246fe34ba2c7c7b9b7207c4c47b3c13f27d2200a954834a841bb4"},
-    {file = "browsergym_experiments-0.8.1.tar.gz", hash = "sha256:32c5fd96dab3dd6271128699058e003ea39a39f27a0e57ae3c593b0b2de5f3d1"},
+    {file = "browsergym_experiments-0.13.0-py3-none-any.whl", hash = "sha256:39e62adf4af3f6381043aca644d1db27eb0b84a29259f2fb1734ce1b3a50edef"},
+    {file = "browsergym_experiments-0.13.0.tar.gz", hash = "sha256:92fefcbc25da72e66c02e0fc42fa6eaa27dd9e1adc8ab2e05bacf192d11cf787"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.13.0"
+dataclasses-json = "*"
 tiktoken = ">=0.4"
+
+[package.extras]
+all = ["browsergym-experiment[assistantbench]", "browsergym-experiment[miniwob]", "browsergym-experiment[visualwebarena]", "browsergym-experiment[webarena]", "browsergym-experiment[weblinx]", "browsergym-experiment[workarena]"]
+assistantbench = ["browsergym-assistantbench"]
+miniwob = ["browsergym-miniwob"]
+visualwebarena = ["browsergym-visualwebarena"]
+webarena = ["browsergym-webarena"]
+weblinx = ["weblinx-browsergym"]
+workarena = ["browsergym-workarena"]
 
 [[package]]
 name = "browsergym-miniwob"
-version = "0.8.1"
+version = "0.13.0"
 description = "MiniWoB++ benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_miniwob-0.8.1-py3-none-any.whl", hash = "sha256:089b920808f8189e82398c0ccafcb9860bcad434385eb8fe1166f60f8b13df86"},
-    {file = "browsergym_miniwob-0.8.1.tar.gz", hash = "sha256:ec5d14f9a3b8f5fbf7843a145268d6071085b232ebe5207f4693cb0d8e2c142b"},
+    {file = "browsergym_miniwob-0.13.0-py3-none-any.whl", hash = "sha256:85ba56f586f91bb828e0b328600f6e55bb722af71432ed3084d5217cf174cf02"},
+    {file = "browsergym_miniwob-0.13.0.tar.gz", hash = "sha256:680ca63ef95cb303a639c2d0e6f16f76bbb86ce9b6415c0712220d3a2e217526"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.13.0"
 
 [[package]]
 name = "browsergym-visualwebarena"
-version = "0.8.1"
+version = "0.13.0"
 description = "VisualWebArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_visualwebarena-0.8.1-py3-none-any.whl", hash = "sha256:1119943e35b067759b4f8c154e9225d3a243d833771d399f60ecd46be2d32440"},
-    {file = "browsergym_visualwebarena-0.8.1.tar.gz", hash = "sha256:799b36cf33e0fb706c04c7bfad972c91d6827733b211cb3ad31a5734906e778a"},
+    {file = "browsergym_visualwebarena-0.13.0-py3-none-any.whl", hash = "sha256:844b02d5385f7f83d8af8e515a892d86ed1d5cd6735ab63891dc7d1904cc052b"},
+    {file = "browsergym_visualwebarena-0.13.0.tar.gz", hash = "sha256:3746ac5a9d88cf4f24eb5d8f1afa99f03993136ffa02be9c4df31d6810cc139b"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.13.0"
+browsergym-webarena = "*"
 libvisualwebarena = "0.0.14"
 requests = "*"
+torch = "*"
 
 [[package]]
 name = "browsergym-webarena"
-version = "0.8.1"
+version = "0.13.0"
 description = "WebArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_webarena-0.8.1-py3-none-any.whl", hash = "sha256:73cfe0968c4fc26d0ce4f2630bb966c721c68352e50506c196a60c84f405e2f8"},
-    {file = "browsergym_webarena-0.8.1.tar.gz", hash = "sha256:f542155a9f7c5973406e8933f17d5a495693b438c8d3b379995751f9b47cf013"},
+    {file = "browsergym_webarena-0.13.0-py3-none-any.whl", hash = "sha256:a8edf0afe506afb95f9a70f5b4c33989abf9ebcab06fa72f4b30b549b8e2ead6"},
+    {file = "browsergym_webarena-0.13.0.tar.gz", hash = "sha256:e01f266a62c354ad56a1e83da6a9ddcc54504fbb47bed3708aa6ea9fb3758128"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.8.1"
+browsergym-core = "0.13.0"
 libwebarena = "0.0.3"
 
 [[package]]
@@ -10031,4 +10061,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7fc51225767e3a98147f7b0dacdce4486a1afd83dc3273f06fd9f6cdc35d1860"
+content-hash = "33609d4fc4856c2ebed6821179020ab9f4254165a276ef34531bcaadbc7a2654"
