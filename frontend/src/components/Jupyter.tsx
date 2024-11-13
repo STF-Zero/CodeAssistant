@@ -9,7 +9,6 @@ import { RootState } from "#/store";
 import { Cell } from "#/state/jupyterSlice";
 import { useScrollToBottom } from "#/hooks/useScrollToBottom";
 import { I18nKey } from "#/i18n/declaration";
-import ChatWidget from "./ChatWidget";
 import FileChatModule from "./KnowledgeBase";
 
 interface IJupyterCell {

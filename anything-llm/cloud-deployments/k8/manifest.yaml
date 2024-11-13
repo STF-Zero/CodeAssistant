@@ -1,0 +1,104 @@
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: anything-llm-volume
+#   annotations:
+#     pv.beta.kubernetes.io/uid: "1000"
+#     pv.beta.kubernetes.io/gid: "1000"
+# spec:
+#   storageClassName: gp2
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   awsElasticBlockStore:
+#     volumeID: "{{ anythingllm_awsElasticBlockStore_volumeID }}"
+#     fsType: ext4
+#   nodeAffinity:
+#     required:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: topology.kubernetes.io/zone
+#           operator: In
+#           values:
+#           - us-east-1c
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: anything-llm-volume-claim
+#   namespace: "{{ namespace }}"
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: anything-llm
+#   namespace: "{{ namespace }}"
+#   labels:
+#     anything-llm: "true"
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       k8s-app: anything-llm
+#   template:
+#     metadata:
+#       labels:
+#         anything-llm: "true"
+#         k8s-app: anything-llm
+#     spec:
+#       containers:
+#         - name: anything-llm
+#           image: "mintplexlabs/anythingllm:render"
+#           resources:
+#             limits:
+#               memory: "1Gi"
+#               cpu: "500m"
+#             requests:
+#               memory: "512Mi"
+#               cpu: "250m"
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: anything-llm-ingress
+#   namespace: "{{ namespace }}"
+# spec:
+#   rules:
+#   - host: "{{ namespace }}-chat.{{ base_domain }}"
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: anything-llm-svc
+#             port:
+#               number: 3001
+#   tls:
+#     - hosts:
+#         - "{{ namespace }}-chat.{{ base_domain }}"
+#       secretName: letsencrypt-prod
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: anything-llm-svc
+#   namespace: "{{ namespace }}"
+# spec:
+#   ports:
+#   - port: 3301
+#     targetPort: 3001
+#     name: traffic
+#   - port: 9090
+#     targetPort: 9090
+#     name: metrics
+#   selector:
+#     k8s-app: anything-llm
