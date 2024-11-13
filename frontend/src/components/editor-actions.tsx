@@ -34,6 +34,7 @@ interface EditorActionsProps {
   onDiscard: () => void;
   onOpenVSCode: () => void;
   onSelectText: () => void;
+  onExplain: () => void;
   isDisabled: boolean;
   selectedText: string | null;
 }
@@ -43,6 +44,7 @@ export function EditorActions({
   onDiscard,
   onOpenVSCode,
   onSelectText,
+  onExplain,
   isDisabled,
   selectedText,
 }: EditorActionsProps) {
@@ -70,17 +72,25 @@ export function EditorActions({
       <EditorActionButton
         onClick={onOpenVSCode}
         disabled={false} // 打开VSCode的按钮通常不禁用
-        className="bg-blue-600 hover:bg-blue-700"
+        className="bg-neutral-800 disabled:hover:bg-neutral-800"
       >
-        Open in VSCode
+        VSCode
       </EditorActionButton>
 
       <EditorActionButton
         onClick={onSelectText}
         disabled={!selectedText} // 根据选中的文本来启用按钮
-        className="bg-green-600 hover:bg-green-700"
+        className="bg-neutral-800 disabled:hover:bg-neutral-800"
       >
-        Language Transform
+        Transform
+      </EditorActionButton>
+
+      <EditorActionButton
+        onClick={onExplain}
+        disabled={!selectedText} // 根据选中的文本来启用按钮
+        className="bg-neutral-800 disabled:hover:bg-neutral-800"
+      >
+        Explain
       </EditorActionButton>
 
     </div>

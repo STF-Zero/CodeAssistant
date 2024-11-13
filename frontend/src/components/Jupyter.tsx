@@ -9,6 +9,8 @@ import { RootState } from "#/store";
 import { Cell } from "#/state/jupyterSlice";
 import { useScrollToBottom } from "#/hooks/useScrollToBottom";
 import { I18nKey } from "#/i18n/declaration";
+import ChatWidget from "./ChatWidget";
+import FileChatModule from "./KnowledgeBase";
 
 interface IJupyterCell {
   cell: Cell;
@@ -88,31 +90,8 @@ function JupyterEditor(): JSX.Element {
     useScrollToBottom(jupyterRef);
 
   return (
-    <div className="flex-1">
-      <div
-        className="overflow-y-auto h-full"
-        ref={jupyterRef}
-        onScroll={(e) => onChatBodyScroll(e.currentTarget)}
-      >
-        {cells.map((cell, index) => (
-          <JupyterCell key={index} cell={cell} />
-        ))}
-      </div>
-      {!hitBottom && (
-        <div className="sticky bottom-2 flex items-center justify-center">
-          <button
-            type="button"
-            className="relative border-1 text-sm rounded px-3 py-1 border-neutral-600 bg-neutral-700 cursor-pointer select-none"
-          >
-            <span className="flex items-center" onClick={scrollDomToBottom}>
-              <VscArrowDown className="inline mr-2 w-3 h-3" />
-              <span className="inline-block" onClick={scrollDomToBottom}>
-                {t(I18nKey.CHAT_INTERFACE$TO_BOTTOM)}
-              </span>
-            </span>
-          </button>
-        </div>
-      )}
+    <div className="flex-1" style={{ height: '100%', width: '100%' }}>
+      <FileChatModule/>
     </div>
   );
 }

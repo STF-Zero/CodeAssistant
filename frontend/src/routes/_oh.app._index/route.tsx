@@ -63,15 +63,12 @@ function CodeEditor() {
   );
 
   const [selectedText, setSelectedText] = useState<string | null>(null);
-
-  // const [message, setMessage] = useState(""); // 用于保存传递给ChatInput的消息
+  const [llmResponse, setLlmResponse] = useState<string | null>(null);
 
   React.useEffect(() => {
-    // only retrieve files if connected to WS to prevent requesting before runtime is ready
     if (runtimeActive && token) OpenHands.getFiles(token).then(setPaths);
   }, [runtimeActive, token]);
 
-  // Code editing is only allowed when the agent is paused, finished, or awaiting user input (server rules)
   const isEditingAllowed = React.useMemo(
     () =>
       agentState === AgentState.PAUSED ||
@@ -125,19 +122,108 @@ function CodeEditor() {
     }
   };
 
-  // 发送消息的回调
-  const handleSendMessage = (message: string) => {
-    // 处理发送后的逻辑
-    console.log(`Transform request already sent`)
-  };
+  const handleExplain = () => {
+    if (selectedText) {
+      const message = `${selectedText}\n请为此代码生成注释,只返回生成注释后的代码即可，不要返回任何其它值`;
+      try {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer sk-dWL7LdfzdRukoOqaA95365B981Dd49628e79E82f6c1b9112");
+        myHeaders.append("Content-Type", "application/json");
 
-  const handleOptionClick = (option: string) => {
+        var raw = JSON.stringify({
+          "messages": [
+            {
+              "role": "system",
+              "content": "你是一个大语言模型机器人"
+            },
+            {
+              "role": "user",
+              "content": message + "只返回代码即可，不要返回其他任何值"
+            }
+          ],
+          "stream": false,
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.5,
+          "presence_penalty": 0,
+          "frequency_penalty": 0,
+          "top_p": 1
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow' as RequestRedirect
+        };
+
+        fetch("https://xiaoai.plus/v1/chat/completions", requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            if (data.choices && data.choices.length > 0) {
+              const content = data.choices[0].message.content; // 提取 content
+              setLlmResponse(content); // 将 content 赋值给 llmResponse
+              console.log("LLM返回内容是：", content); // 打印返回的内容
+            }
+          })
+          .catch(error => console.log('error', error));
+
+      } catch (error) {
+        console.error("Error sending message to LLM:", error);
+      }
+    }
+  }
+
+  const handleOptionClick = async (option: string) => {
     console.log(`Selected option: ${option}`);
     console.log(`selectedText is: ${selectedText}`);
-    // if(selectedText){
-    //   const message = `${selectedText}\n请将此代码转换为 ${option}代码`;
-    //   setMessage(message);
-    // }
+    if (selectedText) {
+      const message = `${selectedText}\n请将此代码转换为 ${option}代码`;
+      try {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer sk-dWL7LdfzdRukoOqaA95365B981Dd49628e79E82f6c1b9112");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "messages": [
+            {
+              "role": "system",
+              "content": "你是一个大语言模型机器人"
+            },
+            {
+              "role": "user",
+              "content": message + "只返回代码即可，不要返回其他任何值"
+            }
+          ],
+          "stream": false,
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.5,
+          "presence_penalty": 0,
+          "frequency_penalty": 0,
+          "top_p": 1
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow' as RequestRedirect
+        };
+
+        fetch("https://xiaoai.plus/v1/chat/completions", requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            if (data.choices && data.choices.length > 0) {
+              const content = data.choices[0].message.content; // 提取 content
+              setLlmResponse(content); // 将 content 赋值给 llmResponse
+              console.log("LLM返回内容是：", content); // 打印返回的内容
+            }
+          })
+          .catch(error => console.log('error', error));
+
+      } catch (error) {
+        console.error("Error sending message to LLM:", error);
+      }
+    }
     setShowComboBox(false);
   };
 
@@ -145,6 +231,7 @@ function CodeEditor() {
   useEffect(() => {
     if (!selectedText) {
       setShowComboBox(false);
+      setLlmResponse(null);
     }
   }, [selectedText]);
 
@@ -160,6 +247,7 @@ function CodeEditor() {
               onDiscard={handleDiscard}
               onOpenVSCode={handleOpenVSCode}
               onSelectText={handleSelectText}
+              onExplain={handleExplain}
               isDisabled={!isEditingAllowed || !modifiedFiles[selectedPath]}
               selectedText={selectedText}
             />
@@ -172,18 +260,33 @@ function CodeEditor() {
 
       {/* ComboBox 位置移到这里 */}
       {showComboBox && (
-              <div className="absolute bottom-4 right-4 z-10 bg-gray border rounded shadow-lg mt-1">
-                {["Python", "C++", "Java", "C"].map((option) => (
-                  <div
-                    key={option}
-                    className="p-2 hover:bg-gray-300 hover:text-black cursor-pointer"
-                    onClick={() => handleOptionClick(option)}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
+        <div className="absolute bottom-4 right-4 z-10 bg-gray border rounded shadow-lg mt-1">
+          {["Python", "C++", "Java", "C"].map((option) => (
+            <div
+              key={option}
+              className="p-2 hover:bg-gray-300 hover:text-black cursor-pointer"
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {llmResponse&& (
+        <div className="absolute bottom-4 right-4 z-10 bg-gray border rounded shadow-lg flex flex-col max-w-xs max-h-80 overflow-auto">
+          <div className="flex justify-between items-center p-2">
+            <h3 className="font-bold text-sm">结果</h3>
+            <button
+              className="text-blue-500 hover:text-red-700 text-lg"
+              onClick={() => setLlmResponse(null)}
+            >
+              &times;
+            </button>
+          </div>
+          <p style={{ whiteSpace: 'pre-wrap', padding: '0.5rem' }}>{llmResponse}</p>
+        </div>
+      )}
     </div>
   );
 }

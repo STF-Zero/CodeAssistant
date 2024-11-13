@@ -238,13 +238,14 @@ function App() {
             className="h-2/3"
             labels={[
               { label: "Workspace", to: "", icon: <CodeIcon /> },
-              { label: "Jupyter", to: "jupyter", icon: <ListIcon /> },
-              {
-                label: "Browser",
-                to: "browser",
-                icon: <GlobeIcon />,
-                isBeta: true,
-              },
+              { label: "KnowledgeBase", to: "jupyter", icon: <ListIcon /> },
+              // { label: "Jupyter", to: "jupyter", icon: <ListIcon /> },
+              // {
+              //   label: "Browser",
+              //   to: "browser",
+              //   icon: <GlobeIcon />,
+              //   isBeta: true,
+              // },
             ]}
           >
             <FilesProvider>
