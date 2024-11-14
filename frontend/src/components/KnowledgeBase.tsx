@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getWorkspaces, getFiles, uploadDocument, RemoveDocument, chatWithWorkspaceThread, addWorkspace, RemoveWorkspace, getThreads, addThread, RemoveThread, getThreadHistory } from './KnowledgeBaseAPI'
+import { getWorkspaces, getFiles, uploadDocument, RemoveDocument, chatWithWorkspaceThread, addWorkspace, RemoveWorkspace, getThreads, addThread, RemoveThread, getThreadHistory } from '../api/KnowledgeBaseAPI'
 
 // 文件列表项接口
 interface FileItem {
