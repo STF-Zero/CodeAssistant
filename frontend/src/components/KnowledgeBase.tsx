@@ -164,7 +164,7 @@ const FileChatModule: React.FC = () => {
             setChatHistory(prev => [...prev, { text: message, sender: 'user' }]);
             const request = message;
             setMessage('')
-            const mode = isChecked ? "chat" : "query";
+            const mode = isChecked ? "query" : "chat";
             const responseContent = await chatWithWorkspaceThread(selectedWorkspace.toLocaleLowerCase(), selectedThread, request, mode);
 
             if (responseContent) {
@@ -343,7 +343,7 @@ const FileChatModule: React.FC = () => {
                             color: '#333',
                             fontWeight: '500', // 设置文本为中等粗体
                         }}>
-                            联网搜索
+                            知识库询问模式
                         </span>
                     </label>
                     <button
