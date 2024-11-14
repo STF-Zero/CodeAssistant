@@ -68,7 +68,7 @@ const FileChatModule: React.FC = () => {
     };
 
     const handleAddWorkspace = async () => {
-        const newWorkspace = window.prompt("请输入新的工作区名称：");
+        const newWorkspace = window.prompt("请输入新的工作区名称：\n请注意！名称中不能含有汉字、空格！");
         if (newWorkspace !== null && newWorkspace.trim() !== '') {
             // 可以将新的工作区添加到状态或数据库中
             addWorkspace(newWorkspace)
@@ -94,7 +94,7 @@ const FileChatModule: React.FC = () => {
 
     const handleAddThread = async () => {
         console.log("添加新的Thread");
-        const newThread = window.prompt("请输入新的聊天名称：");
+        const newThread = window.prompt("请输入新的聊天名称：\n请注意！名称中不能含有汉字、空格！");
         if (newThread !== null && newThread.trim() !== '') {
             // 可以将新的聊天添加到状态或数据库中
             const result = addThread(selectedWorkspace.toLocaleLowerCase(), newThread)
@@ -140,7 +140,7 @@ const FileChatModule: React.FC = () => {
     // 删除指定id的文件
     const removeFileByName = (docPath: string) => {
         // 二次确认弹窗
-        const confirmed = window.confirm('您确定要删除这个文件吗？' + docPath);
+        const confirmed = window.confirm('您确定要删除这个文件吗？');
         if (confirmed) {
             RemoveDocument(docPath);
             alert('删除已完成！请刷新列表查看！');
@@ -152,7 +152,7 @@ const FileChatModule: React.FC = () => {
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            uploadDocument(file);
+            uploadDocument(file, selectedWorkspace.toLocaleLowerCase());
             alert('上传已完成！请刷新列表查看！');
             // fetchFiles(selectedWorkspace.toLocaleLowerCase());
         }

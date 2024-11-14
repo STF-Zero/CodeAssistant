@@ -60,7 +60,7 @@ export const getThreads = async (workspaceSlug) => {
     }
 };
 
-export const uploadDocument = async (file) => {
+export const uploadDocument = async (file, workspaceSlug) => {
     const formData = new FormData();
     formData.append('file', file); // 确保 'file' 是文件的字段名称
 
@@ -79,7 +79,7 @@ export const uploadDocument = async (file) => {
 
         const location = result.documents[0].location;
         try {
-            const response2 = await fetch('http://localhost:3050/api/v1/workspace/codeassistant/update-embeddings', {
+            const response2 = await fetch('http://localhost:3050/api/v1/workspace/'+workspaceSlug+'/update-embeddings', {
                 method: 'POST',
                 headers: {
                     'accept': 'application/json',
