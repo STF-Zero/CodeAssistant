@@ -4799,12 +4799,12 @@ type = ["mypy (==1.11.2)"]
 
 [[package]]
 name = "modal"
-version = "0.64.192"
+version = "0.66.15"
 description = "Python client library for Modal"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "modal-0.64.192-py3-none-any.whl", hash = "sha256:4d20e201e4040b13841c0e34ea4ad0e58719568adc084eee6b1da71b7c618273"},
+    {file = "modal-0.66.15-py3-none-any.whl", hash = "sha256:b4156cbe87d64ddef5c86b89b473699d92955198bde755259942e83c05536e77"},
 ]
 
 [package.dependencies]
@@ -4814,9 +4814,9 @@ certifi = "*"
 click = ">=8.1.0"
 fastapi = "*"
 grpclib = "0.4.7"
-protobuf = ">=3.19,<4.24.0 || >4.24.0,<5.0"
+protobuf = ">=3.19,<4.24.0 || >4.24.0,<6.0"
 rich = ">=12.0.0"
-synchronicity = ">=0.8.2,<0.9.0"
+synchronicity = ">=0.9.3,<0.10.0"
 toml = "*"
 typer = ">=0.9"
 types-certifi = "*"
@@ -8435,17 +8435,18 @@ dev = ["hypothesis (>=6.70.0)", "pytest (>=7.1.0)"]
 
 [[package]]
 name = "synchronicity"
-version = "0.8.2"
+version = "0.9.3"
 description = "Export blocking and async library versions from a single async implementation"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "synchronicity-0.8.2-py3-none-any.whl", hash = "sha256:87c2adc3f388b80629e55d202bd8404b17cf28b857a58c0094bf3ab093d430c6"},
+    {file = "synchronicity-0.9.3-py3-none-any.whl", hash = "sha256:73c06fe6613c698cbcfa6e77ab6b8d49cce3494c5afc3ef23b007b1fdff2256d"},
+    {file = "synchronicity-0.9.3.tar.gz", hash = "sha256:d3856601e63e518a143ec42f57988d9e88e4f94716168b717fd4b1b64f4704fd"},
 ]
 
 [package.dependencies]
-sigtools = "4.0.1"
-typing-extensions = ">=4.6"
+sigtools = ">=4.0.1"
+typing-extensions = ">=4.12.2"
 
 [[package]]
 name = "tenacity"
@@ -10031,4 +10032,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7fc51225767e3a98147f7b0dacdce4486a1afd83dc3273f06fd9f6cdc35d1860"
+content-hash = "8bd0852550ebd36f1e6c9329171a7b8f26073862b375049d10bf66df6f95073d"
