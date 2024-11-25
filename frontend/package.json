@@ -38,7 +38,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "remark-gfm": "^4.0.0",
     "sirv-cli": "^3.0.0",
-    "tailwind-merge": "^2.5.4",
+    "tailwind-merge": "^2.5.5",
     "vite": "^5.4.9",
     "web-vitals": "^3.5.2",
     "ws": "^8.18.0"
