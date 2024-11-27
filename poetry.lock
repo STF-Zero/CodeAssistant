@@ -3879,13 +3879,13 @@ types-tqdm = "*"
 
 [[package]]
 name = "litellm"
-version = "1.49.6"
+version = "1.52.16"
 description = "Library to easily interface with LLM API providers"
 optional = false
 python-versions = "!=2.7.*,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,>=3.8"
 files = [
-    {file = "litellm-1.49.6-py3-none-any.whl", hash = "sha256:c3b1dc25861850e8c2409e14198325019fe22680bf0c455e0124c23e6b5de318"},
-    {file = "litellm-1.49.6.tar.gz", hash = "sha256:cd82b332e11d80bd7e8b866b407bfbda8afe8bcf109687be5747f0f85f09c74a"},
+    {file = "litellm-1.52.16-py3-none-any.whl", hash = "sha256:9c3cffb71d5a2e2f3a814d06b6360c4983b9718713100b9f094f5f464a0aab75"},
+    {file = "litellm-1.52.16.tar.gz", hash = "sha256:afeb60492b4790bbc23b351a5270c86ef1d063b01cc9f25fa06505c020cf789e"},
 ]
 
 [package.dependencies]
@@ -3894,7 +3894,7 @@ click = "*"
 importlib-metadata = ">=6.8.0"
 jinja2 = ">=3.1.2,<4.0.0"
 jsonschema = ">=4.22.0,<5.0.0"
-openai = ">=1.51.0"
+openai = ">=1.54.0"
 pydantic = ">=2.0.0,<3.0.0"
 python-dotenv = ">=0.2.0"
 requests = ">=2.31.0,<3.0.0"
@@ -5552,13 +5552,13 @@ sympy = "*"
 
 [[package]]
 name = "openai"
-version = "1.51.2"
+version = "1.55.1"
 description = "The official Python library for the openai API"
 optional = false
-python-versions = ">=3.7.1"
+python-versions = ">=3.8"
 files = [
-    {file = "openai-1.51.2-py3-none-any.whl", hash = "sha256:5c5954711cba931423e471c37ff22ae0fd3892be9b083eee36459865fbbb83fa"},
-    {file = "openai-1.51.2.tar.gz", hash = "sha256:c6a51fac62a1ca9df85a522e462918f6bb6bc51a8897032217e453a0730123a6"},
+    {file = "openai-1.55.1-py3-none-any.whl", hash = "sha256:d10d96a4f9dc5f05d38dea389119ec8dcd24bc9698293c8357253c601b4a77a5"},
+    {file = "openai-1.55.1.tar.gz", hash = "sha256:471324321e7739214f16a544e801947a046d3c5d516fae8719a317234e4968d3"},
 ]
 
 [package.dependencies]
