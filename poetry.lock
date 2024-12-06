@@ -160,20 +160,6 @@ files = [
 frozenlist = ">=1.1.0"
 
 [[package]]
-name = "aiostream"
-version = "0.5.2"
-description = "Generator-based operators for asynchronous iteration"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "aiostream-0.5.2-py3-none-any.whl", hash = "sha256:054660370be9d37f6fe3ece3851009240416bd082e469fd90cc8673d3818cf71"},
-    {file = "aiostream-0.5.2.tar.gz", hash = "sha256:b71b519a2d66c38f0872403ab86417955b77352f08d9ad02ad46fc3926b389f4"},
-]
-
-[package.dependencies]
-typing-extensions = "*"
-
-[[package]]
 name = "altair"
 version = "5.4.1"
 description = "Vega-Altair: A declarative statistical visualization library for Python."
@@ -4799,24 +4785,23 @@ type = ["mypy (==1.11.2)"]
 
 [[package]]
 name = "modal"
-version = "0.64.192"
+version = "0.67.31"
 description = "Python client library for Modal"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "modal-0.64.192-py3-none-any.whl", hash = "sha256:4d20e201e4040b13841c0e34ea4ad0e58719568adc084eee6b1da71b7c618273"},
+    {file = "modal-0.67.31-py3-none-any.whl", hash = "sha256:8020d2bb1dd2902fb6e02327a18f57ef3860f0fe0000f5c12712c11b53f980c9"},
 ]
 
 [package.dependencies]
 aiohttp = "*"
-aiostream = ">=0.5.2,<0.6.0"
 certifi = "*"
 click = ">=8.1.0"
 fastapi = "*"
 grpclib = "0.4.7"
-protobuf = ">=3.19,<4.24.0 || >4.24.0,<5.0"
+protobuf = ">=3.19,<4.24.0 || >4.24.0,<6.0"
 rich = ">=12.0.0"
-synchronicity = ">=0.8.2,<0.9.0"
+synchronicity = ">=0.9.4,<0.10.0"
 toml = "*"
 typer = ">=0.9"
 types-certifi = "*"
@@ -8435,17 +8420,18 @@ dev = ["hypothesis (>=6.70.0)", "pytest (>=7.1.0)"]
 
 [[package]]
 name = "synchronicity"
-version = "0.8.2"
+version = "0.9.5"
 description = "Export blocking and async library versions from a single async implementation"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "synchronicity-0.8.2-py3-none-any.whl", hash = "sha256:87c2adc3f388b80629e55d202bd8404b17cf28b857a58c0094bf3ab093d430c6"},
+    {file = "synchronicity-0.9.5-py3-none-any.whl", hash = "sha256:165b2b0363ff3d553a3c57a26ed6d6b5c66799c88e598fcc348d1d94bb55b671"},
+    {file = "synchronicity-0.9.5.tar.gz", hash = "sha256:a72ee6d89896d45970d7d894301614b1f2faf6c7134585098b18c2006b6196ca"},
 ]
 
 [package.dependencies]
-sigtools = "4.0.1"
-typing-extensions = ">=4.6"
+sigtools = ">=4.0.1"
+typing-extensions = ">=4.12.2"
 
 [[package]]
 name = "tenacity"
@@ -10031,4 +10017,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7fc51225767e3a98147f7b0dacdce4486a1afd83dc3273f06fd9f6cdc35d1860"
+content-hash = "30b327cd813b9ebefadd5d307cd466ca6c326524cb1f82061accddd3d8232c51"
