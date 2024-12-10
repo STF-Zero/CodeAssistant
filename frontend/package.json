@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.11.2",
-    "@remix-run/testing": "^2.11.2",
+    "@remix-run/testing": "^2.15.1",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.6.1",
     "@testing-library/react": "^16.0.1",
